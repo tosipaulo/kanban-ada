@@ -1,4 +1,4 @@
-<div class="card" cdkDrag>
+<div class="card">
     <div class="card__header">
         <h3 class="card__title">{{card.titulo}}</h3>
         <mat-icon class="card__icon card__icon--edit" fontIcon="edit_note"></mat-icon>
@@ -8,9 +8,17 @@
     </div>
     <div class="card__footer">
         <div class="card__footer__actions">
-            <mat-icon class="card__icon" fontIcon="arrow_back_ios_new"></mat-icon>
+            <mat-icon 
+                class="card__icon" 
+                [class.hidden]="!controlBack" 
+                fontIcon="arrow_back_ios_new"
+                (click)="handleClickBack()"></mat-icon>
             <mat-icon class="card__icon card__icon--delete" fontIcon="delete"></mat-icon>
-            <mat-icon class="card__icon" fontIcon="arrow_forward_ios"></mat-icon>
+            <mat-icon 
+                class="card__icon" 
+                [class.hidden]="!controlNext" 
+                fontIcon="arrow_forward_ios" 
+                (click)="handleClickNext()"></mat-icon>
         </div>
     </div>
 </div>

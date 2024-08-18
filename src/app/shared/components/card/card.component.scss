@@ -56,6 +56,10 @@
                 color: #d91111;
             }
         }
+
+        &.hidden {
+            visibility: hidden;
+        }
     }
 
     &__footer {

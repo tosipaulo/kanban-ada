@@ -2,14 +2,6 @@
     <h1 class="title board__title">Board ADA</h1>
 
     <div class="board__content">
-        <div class="board__column">
-            <h2 class="board__column__title">New</h2>
-            <div class="board__column__cards" >
-                <ng-container *ngFor="let card of newCards">
-                    <ui-card [card]="card"></ui-card>
-                </ng-container>
-            </div>
-        </div>
         <div class="board__column" 
             cdkDropList
             #todoList="cdkDropList"
@@ -20,7 +12,11 @@
             <h2 class="board__column__title">To Do</h2>
             <div class="board__column__cards" >
                 <ng-container *ngFor="let card of cardsGroup.ToDo">
-                    <ui-card [card]="card" cdkDrag></ui-card>
+                    <ui-card 
+                    [card]="card"
+                    [controlBack]="false"  
+                    cdkDrag 
+                    (clickEventNext)="handleEventClick($event, 'Doing')"></ui-card>
                 </ng-container>
             </div>
         </div>
@@ -34,7 +30,11 @@
             <h2 class="board__column__title">Doing</h2>
             <div class="board__column__cards">
                 <ng-container *ngFor="let card of cardsGroup.Doing">
-                    <ui-card [card]="card" cdkDrag></ui-card>
+                    <ui-card 
+                    [card]="card" 
+                    cdkDrag 
+                    (clickEventBack)="handleEventClick($event, 'ToDo')"
+                    (clickEventNext)="handleEventClick($event, 'Done')"></ui-card>
                 </ng-container>
             </div>
         </div>
@@ -48,7 +48,11 @@
             <h2 class="board__column__title">Done</h2>
             <div class="board__column__cards">
                 <ng-container *ngFor="let card of cardsGroup.Done">
-                    <ui-card [card]="card" cdkDrag></ui-card>
+                    <ui-card 
+                    [card]="card" 
+                    [controlNext]="false" 
+                    cdkDrag 
+                    (clickEventBack)="handleEventClick($event, 'Doing')"></ui-card>
                 </ng-container>
             </div>
         </div>

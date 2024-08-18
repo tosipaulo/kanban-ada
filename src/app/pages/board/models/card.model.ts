@@ -14,5 +14,5 @@ export interface CardGroup {
 export interface CardsGroupedByStatus {
     ToDo: CardModel[];
     Doing: CardModel[];
-    Done: CardModel[];
+    Done: CardModel[]
   }

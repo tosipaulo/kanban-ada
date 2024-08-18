@@ -18,9 +18,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    MatIconModule,
-    DragDropModule
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
