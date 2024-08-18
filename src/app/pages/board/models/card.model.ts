@@ -2,7 +2,7 @@ export interface CardModel {
     id?: string;
     titulo: string;
     conteudo: string;
-    lista: 'ToDo' | 'Doing' | 'Done';
+    lista?: 'ToDo' | 'Doing' | 'Done';
 }
 
 export interface CardGroup {

@@ -4,45 +4,17 @@
     <div class="board__content">
         <div class="board__column">
             <h2 class="board__column__title">New</h2>
-            <div class="board__column__cards">
-                <div class="card">
-                    <div class="card__header">
-                        <h3 class="card__title">Teste 01</h3>
-                        <mat-icon class="card__icon card__icon--edit" fontIcon="edit_note"></mat-icon>
-                    </div>
-                    <div class="card__body">
-                        <p class="card__description">Aqui vai uma descrição</p>
-                    </div>
-                    <div class="card__footer">
-                        <div class="card__footer__actions">
-                            <mat-icon class="card__icon" fontIcon="arrow_back_ios_new"></mat-icon>
-                            <mat-icon class="card__icon card__icon--delete" fontIcon="delete"></mat-icon>
-                            <mat-icon class="card__icon" fontIcon="arrow_forward_ios"></mat-icon>
-                        </div>
-                    </div>
-                </div>
+            <div class="board__column__cards" >
+                <ng-container *ngFor="let card of newCards">
+                    <ui-card [card]="card"></ui-card>
+                </ng-container>
             </div>
         </div>
         <div class="board__column">
             <h2 class="board__column__title">To Do</h2>
             <div class="board__column__cards">
                 <ng-container *ngFor="let card of cardsGroup.ToDo">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3 class="card__title">{{card.titulo}}</h3>
-                            <mat-icon class="card__icon card__icon--edit" fontIcon="edit_note"></mat-icon>
-                        </div>
-                        <div class="card__body">
-                            <p class="card__description">{{card.conteudo}}</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__footer__actions">
-                                <mat-icon class="card__icon" fontIcon="arrow_back_ios_new"></mat-icon>
-                                <mat-icon class="card__icon card__icon--delete" fontIcon="delete"></mat-icon>
-                                <mat-icon class="card__icon" fontIcon="arrow_forward_ios"></mat-icon>
-                            </div>
-                        </div>
-                    </div>
+                    <ui-card [card]="card"></ui-card>
                 </ng-container>
             </div>
         </div>
@@ -50,22 +22,7 @@
             <h2 class="board__column__title">Doing</h2>
             <div class="board__column__cards">
                 <ng-container *ngFor="let card of cardsGroup.Doing">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3 class="card__title">{{card.titulo}}</h3>
-                            <mat-icon class="card__icon card__icon--edit" fontIcon="edit_note"></mat-icon>
-                        </div>
-                        <div class="card__body">
-                            <p class="card__description">{{card.conteudo}}</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__footer__actions">
-                                <mat-icon class="card__icon" fontIcon="arrow_back_ios_new"></mat-icon>
-                                <mat-icon class="card__icon card__icon--delete" fontIcon="delete"></mat-icon>
-                                <mat-icon class="card__icon" fontIcon="arrow_forward_ios"></mat-icon>
-                            </div>
-                        </div>
-                    </div>
+                    <ui-card [card]="card"></ui-card>
                 </ng-container>
             </div>
         </div>
@@ -73,22 +30,7 @@
             <h2 class="board__column__title">Done</h2>
             <div class="board__column__cards">
                 <ng-container *ngFor="let card of cardsGroup.Done">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3 class="card__title">{{card.titulo}}</h3>
-                            <mat-icon class="card__icon card__icon--edit" fontIcon="edit_note"></mat-icon>
-                        </div>
-                        <div class="card__body">
-                            <p class="card__description">{{card.conteudo}}</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__footer__actions">
-                                <mat-icon class="card__icon" fontIcon="arrow_back_ios_new"></mat-icon>
-                                <mat-icon class="card__icon card__icon--delete" fontIcon="delete"></mat-icon>
-                                <mat-icon class="card__icon" fontIcon="arrow_forward_ios"></mat-icon>
-                            </div>
-                        </div>
-                    </div>
+                    <ui-card [card]="card"></ui-card>
                 </ng-container>
             </div>
         </div>
