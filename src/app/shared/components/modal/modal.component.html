@@ -1,7 +1,15 @@
 <div class="modal">
     <h3 class="modal__title">Cadastre seu card</h3>
-    <form class="modal__form">
-        <input class="modal__form__input" type="text" placeholder="Adicione o titulo">
-        <textarea class="modal__form__textarea"></textarea>
+    <form class="modal__form" [formGroup]="form" (ngSubmit)="submit()">
+        <input formControlName="titulo" class="modal__form__input" type="text" placeholder="Adicione o titulo">
+        <quill-editor 
+            formControlName="conteudo" 
+            class="modal__form__editor" 
+            [modules]="quillConfig" 
+            [sanitize]="true" 
+            [styles]="{width: '100%'}"></quill-editor>
+        <div class="modal__form__footer">
+            <ui-button typeButton="submit">Cadastrar</ui-button>
+        </div>
     </form>
 </div>

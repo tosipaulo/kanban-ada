@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardModel } from 'src/app/pages/board/models/card.model';
 import { MatIconModule } from '@angular/material/icon';
 import { CdkDrag, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
+import { CardModel } from '../../models/card.model';
 
 @Component({
   selector: 'ui-card',
@@ -17,6 +17,7 @@ export class CardComponent {
   @Input() controlNext: boolean = true;
   @Output() clickEventBack = new EventEmitter<CardModel>();
   @Output() clickEventNext = new EventEmitter<CardModel>();
+  @Output() deleteEvent = new EventEmitter<CardModel>();
 
   handleClickNext() {
     this.clickEventNext.emit(this.card);
@@ -24,5 +25,9 @@ export class CardComponent {
 
   handleClickBack() {
     this.clickEventBack.emit(this.card);
+  }
+
+  handleDelete() {
+    this.deleteEvent.emit(this.card);
   }
 }

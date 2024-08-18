@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CardGroup, CardModel, CardsGroupedByStatus } from '../models/card.model';
 import { map } from 'rxjs';
+import { CardModel, CardsGroupedByStatus } from 'src/app/shared/models/card.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,20 @@ export class CardsService {
     return this.http.get<CardModel[]>(`${environment.api}/cards`).pipe(
       map(cards => this.groupByStatus(cards))
     ); 
+  }
+
+  addCard(card:CardModel) {
+    return this.http.post<CardModel>(`${environment.api}/cards`, card);
+  }
+
+  deleteCard(cardId:string) {
+    return this.http.delete<CardModel[]>(`${environment.api}/cards/${cardId}`).pipe(
+      map(cards => this.groupByStatus(cards))
+    );
+  }
+
+  updateCard(card:CardModel) {
+    return this.http.put<CardModel>(`${environment.api}/cards/${card.id}`, card);
   }
 
   private groupByStatus(cards: CardModel[]): CardsGroupedByStatus {

@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CardsService } from './services/cards.service';
 import { MatIconModule } from '@angular/material/icon';
-import { CardModel, CardsGroupedByStatus } from './models/card.model';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from 'src/app/shared/components/card/card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
-import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { CardModel, CardsGroupedByStatus } from 'src/app/shared/models/card.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-board',
@@ -27,8 +28,6 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-
-  newCards: CardModel[] = [];
 
   cardsGroup: CardsGroupedByStatus = { ToDo: [], Doing: [], Done: [] };
 
@@ -55,23 +54,28 @@ export class BoardComponent implements OnInit {
     }
 
     const item = event.container.data[event.currentIndex];
-    item.lista = this.getListName(event.container.id); 
-    console.log(event.container.data);
+    const newCard = {...item};
+    newCard.lista = this.getListName(event.container.id); 
+    
+    this.cardService.updateCard(newCard).subscribe((cardReponse: CardModel) => {})
   }
 
   handleEventClick(card: CardModel, status: 'ToDo' | 'Doing' | 'Done') {
     const listName = card.lista as 'ToDo' | 'Doing' | 'Done';
     if(this.isValidList(listName)) {
       const index = this.cardsGroup[listName].indexOf(card);
-      if (index !== -1) {
-        this.cardsGroup[listName].splice(index, 1);
-        if(this.isValidList(status)) {
-          this.cardsGroup[status
+      const newCard = {...card}
+      newCard.lista = status;
 
-          ].push(card);
-          card.lista = status;
+      this.cardService.updateCard(newCard).subscribe((cardReponse: CardModel) => {
+        if (index !== -1) {
+          this.cardsGroup[listName].splice(index, 1);
+          if(this.isValidList(status)) {
+            this.cardsGroup[status].push(cardReponse);
+            card.lista = status;
+          }
         }
-      }
+      })
     }
   }
 
@@ -87,11 +91,19 @@ export class BoardComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open<string>(ModalComponent, {width: '500px'});
+    const dialogRef = this.dialog.open(ModalComponent, {width: '500px'});
 
-    dialogRef.closed.subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.componentInstance!.eventModal.subscribe((card: CardModel) => {
+      this.cardService.addCard(card).subscribe((cardResponse: CardModel) => {
+        this.cardsGroup.ToDo.push(cardResponse);
+        dialogRef.close()
+      })
     });
+  }
+
+  handleDelete(card: CardModel) {
+    const cardId = card.id || '';
+    this.cardService.deleteCard(cardId).subscribe(cardsGroup => this.cardsGroup = cardsGroup)
   }
 
 }

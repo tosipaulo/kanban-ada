@@ -4,7 +4,7 @@
         <mat-icon class="card__icon card__icon--edit" fontIcon="edit_note"></mat-icon>
     </div>
     <div class="card__body">
-        <p class="card__description">{{card.conteudo}}</p>
+        <p class="card__description" [innerHTML]="card.conteudo"></p>
     </div>
     <div class="card__footer">
         <div class="card__footer__actions">
@@ -13,7 +13,10 @@
                 [class.hidden]="!controlBack" 
                 fontIcon="arrow_back_ios_new"
                 (click)="handleClickBack()"></mat-icon>
-            <mat-icon class="card__icon card__icon--delete" fontIcon="delete"></mat-icon>
+            <mat-icon 
+                class="card__icon card__icon--delete" 
+                fontIcon="delete"
+                (click)="handleDelete()"></mat-icon>
             <mat-icon 
                 class="card__icon" 
                 [class.hidden]="!controlNext" 
