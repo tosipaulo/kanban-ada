@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --color-black: #10121E;
+    --color-gray-100: #181C24;
+    --color-gray-200: #48484c;
+    --color-white: #fff;
+    --color-primary: #A6F751;
+    --color-primary-hover: #68b31a;
+    --color-blue: #2371ff;
+  }
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body { 
+    font-family :"Ubuntu", sans-serif; 
+    background-color: var(--color-black);
+    font-size: 16px;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+}
+
+.title {
+    color: var(--color-white);
+    font-weight: 400;
+    font-size: 2rem;
+}
