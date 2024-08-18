@@ -5,11 +5,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { CardModel, CardsGroupedByStatus } from './models/card.model';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from 'src/app/shared/components/card/card.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatIconModule, CardComponent],
+  imports: [CommonModule, RouterModule, MatIconModule, DragDropModule, CardComponent],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
@@ -27,5 +29,19 @@ export class BoardComponent implements OnInit {
       conteudo: 'Aqui vai um conteudo muito legal'
     })
     this.cardService.getCards().subscribe(cardsGroup => this.cardsGroup = cardsGroup)
+  }
+
+  drop(event: CdkDragDrop<CardModel[]>) {
+    console.log(event)
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

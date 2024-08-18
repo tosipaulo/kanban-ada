@@ -10,27 +10,45 @@
                 </ng-container>
             </div>
         </div>
-        <div class="board__column">
+        <div class="board__column" 
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="cardsGroup.ToDo"
+            [cdkDropListConnectedTo]="[doingList, doneList]"
+            [id]="'todoList'"
+            (cdkDropListDropped)="drop($event)">
             <h2 class="board__column__title">To Do</h2>
-            <div class="board__column__cards">
+            <div class="board__column__cards" >
                 <ng-container *ngFor="let card of cardsGroup.ToDo">
-                    <ui-card [card]="card"></ui-card>
+                    <ui-card [card]="card" cdkDrag></ui-card>
                 </ng-container>
             </div>
         </div>
-        <div class="board__column">
+        <div class="board__column" 
+            cdkDropList
+            #doingList="cdkDropList"
+            [cdkDropListData]="cardsGroup.Doing"
+            [cdkDropListConnectedTo]="[todoList, doneList]"
+            [id]="'doingList'"
+            (cdkDropListDropped)="drop($event)">
             <h2 class="board__column__title">Doing</h2>
             <div class="board__column__cards">
                 <ng-container *ngFor="let card of cardsGroup.Doing">
-                    <ui-card [card]="card"></ui-card>
+                    <ui-card [card]="card" cdkDrag></ui-card>
                 </ng-container>
             </div>
         </div>
-        <div class="board__column">
+        <div class="board__column"
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="cardsGroup.Done"
+            [cdkDropListConnectedTo]="[todoList, doingList]"
+            [id]="'doneList'"
+            (cdkDropListDropped)="drop($event)">
             <h2 class="board__column__title">Done</h2>
             <div class="board__column__cards">
                 <ng-container *ngFor="let card of cardsGroup.Done">
-                    <ui-card [card]="card"></ui-card>
+                    <ui-card [card]="card" cdkDrag></ui-card>
                 </ng-container>
             </div>
         </div>
