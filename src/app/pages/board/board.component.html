@@ -9,7 +9,10 @@
             [cdkDropListConnectedTo]="[doingList, doneList]"
             [id]="'todoList'"
             (cdkDropListDropped)="drop($event)">
-            <h2 class="board__column__title">To Do</h2>
+            <div class="board__column__header">
+                <h2 class="board__column__title">To Do</h2>
+                <ui-button (click)="openDialog()">Adicionar</ui-button>
+            </div>
             <div class="board__column__cards" >
                 <ng-container *ngFor="let card of cardsGroup.ToDo">
                     <ui-card 

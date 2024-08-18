@@ -2,15 +2,7 @@
   (click)="clicked.emit()"
   [type]="typeButton"
   class="button"
-  [ngClass]="{
-    outline: configButton.type === 'outline',
-    orange: configButton.type === 'outline' && configButton.color === 'orange',
-    green: configButton.type === 'outline' && configButton.color === 'green',
-    white: configButton.type === 'outline' && configButton.color === 'white',
-    hasIcon: configButton.icon?.length,
-    notHaveText: !configButton.text.length
-  }"
   [disabled]="isDisabled"
 >
-{{ configButton.text }}
+<ng-content></ng-content>
 </button>

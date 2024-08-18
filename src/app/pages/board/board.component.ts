@@ -7,11 +7,22 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from 'src/app/shared/components/card/card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatIconModule, DragDropModule, CardComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatIconModule,
+    DragDropModule,
+    CardComponent,
+    ButtonComponent,
+    DialogModule
+],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
@@ -21,7 +32,10 @@ export class BoardComponent implements OnInit {
 
   cardsGroup: CardsGroupedByStatus = { ToDo: [], Doing: [], Done: [] };
 
-  constructor(private cardService: CardsService){}
+  constructor(
+    private cardService: CardsService,
+    public dialog: Dialog
+  ){}
 
   ngOnInit(): void {
     this.cardService.getCards().subscribe(cardsGroup => this.cardsGroup = cardsGroup)
@@ -70,6 +84,14 @@ export class BoardComponent implements OnInit {
     if (containerId.includes('doingList')) return 'Doing';
     if (containerId.includes('doneList')) return 'Done';
     throw new Error('Unknown container id');
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open<string>(ModalComponent, {width: '500px'});
+
+    dialogRef.closed.subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

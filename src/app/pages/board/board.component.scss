@@ -16,6 +16,11 @@
         width: 33%;
         overflow: hidden;
 
+        &__header {
+            display: flex;
+            justify-content: space-between;
+        }
+
         &__title {
             margin-bottom: 32px;
             color: var(--color-white);
