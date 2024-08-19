@@ -116,6 +116,7 @@ export class BoardComponent implements OnInit {
       if (index !== -1) {
         this.cardsGroup[status].splice(index, 1, cardResponse);
       }
+      this.isModeView = true;
     });
   }
 
