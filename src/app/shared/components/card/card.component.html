@@ -1,27 +1,56 @@
-<div class="card">
+<form class="card" [formGroup]="form">
     <div class="card__header">
-        <h3 class="card__title">{{card.titulo}}</h3>
-        <mat-icon class="card__icon card__icon--edit" fontIcon="edit_note"></mat-icon>
+        <h3 class="card__title">
+            <ng-container *ngIf="isModeView; else templateModeEdit">
+                {{card.titulo}}
+            </ng-container>
+            <ng-template #templateModeEdit>
+                <ui-input placeholder="Cadastre seu titulo" formControlName="titulo"/>
+            </ng-template>
+        </h3>
+        <mat-icon *ngIf="isModeView" class="card__icon card__icon--edit" fontIcon="edit_note" (click)="edit()"></mat-icon>
     </div>
     <div class="card__body">
+        <!-- <ng-container *ngIf="isModeView; else templateModeEditDescription">
+            <p class="card__description" [innerHTML]="card.conteudo"></p>
+        </ng-container> -->
         <p class="card__description" [innerHTML]="card.conteudo"></p>
+        <ng-template #templateModeEditDescription>
+            <quill-editor 
+            formControlName="conteudo"
+            [modules]="quillConfig" 
+            [sanitize]="true" 
+            [styles]="{width: '100%'}"></quill-editor>
+        </ng-template>
     </div>
     <div class="card__footer">
         <div class="card__footer__actions">
-            <mat-icon 
-                class="card__icon" 
-                [class.hidden]="!controlBack" 
-                fontIcon="arrow_back_ios_new"
-                (click)="handleClickBack()"></mat-icon>
-            <mat-icon 
-                class="card__icon card__icon--delete" 
-                fontIcon="delete"
-                (click)="handleDelete()"></mat-icon>
-            <mat-icon 
-                class="card__icon" 
-                [class.hidden]="!controlNext" 
-                fontIcon="arrow_forward_ios" 
-                (click)="handleClickNext()"></mat-icon>
+            <ng-container *ngIf="isModeView; else templateModeEditAction">
+                <mat-icon 
+                    class="card__icon" 
+                    [class.hidden]="!controlBack" 
+                    fontIcon="arrow_back_ios_new"
+                    (click)="handleClickBack()"></mat-icon>
+                <mat-icon 
+                    class="card__icon card__icon--delete" 
+                    fontIcon="delete"
+                    (click)="handleDelete()"></mat-icon>
+                <mat-icon 
+                    class="card__icon" 
+                    [class.hidden]="!controlNext" 
+                    fontIcon="arrow_forward_ios" 
+                    (click)="handleClickNext()"></mat-icon>
+            </ng-container>
+            <ng-template #templateModeEditAction>
+                <mat-icon 
+                    class="card__icon  card__icon--cancel" 
+                    fontIcon="cancel"
+                    (click)="isModeView = true"></mat-icon>
+                <mat-icon 
+                    class="card__icon" 
+                    fontIcon="save"
+                    (click)="save()"></mat-icon>
+            </ng-template>
         </div>
     </div>
-</div>
+</form>

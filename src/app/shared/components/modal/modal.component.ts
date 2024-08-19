@@ -8,7 +8,7 @@ import { CardModel } from '../../models/card.model';
 
 
 @Component({
-  selector: 'app-modal',
+  selector: 'ui-modal',
   standalone: true,
   imports: [
     CommonModule,

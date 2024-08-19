@@ -30,6 +30,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class BoardComponent implements OnInit {
 
   cardsGroup: CardsGroupedByStatus = { ToDo: [], Doing: [], Done: [] };
+  isModeView = true;
+  editingCardId: string | null = null;
 
   constructor(
     private cardService: CardsService,
@@ -104,6 +106,27 @@ export class BoardComponent implements OnInit {
   handleDelete(card: CardModel) {
     const cardId = card.id || '';
     this.cardService.deleteCard(cardId).subscribe(cardsGroup => this.cardsGroup = cardsGroup)
+  }
+
+  handleEdit(card: CardModel, status: 'ToDo' | 'Doing' | 'Done') {
+    this.cardService.updateCard(card).subscribe((cardResponse: CardModel) => {
+      const cardId = cardResponse.id || '';
+      this.editingCardId = cardId;
+      const index = this.cardsGroup[status].findIndex(card => card.id === cardId);
+      if (index !== -1) {
+        this.cardsGroup[status].splice(index, 1, cardResponse);
+      }
+    });
+  }
+
+  isEditing(card: CardModel): boolean {
+    return this.editingCardId === card.id;
+  }
+
+  stopEditing(cardId: string) {
+    if (this.editingCardId === cardId) {
+      this.editingCardId = null;
+    }
   }
 
 }

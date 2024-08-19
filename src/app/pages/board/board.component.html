@@ -20,7 +20,9 @@
                     [controlBack]="false"  
                     cdkDrag 
                     (clickEventNext)="handleEventClick($event, 'Doing')"
-                    (deleteEvent)="handleDelete($event)"></ui-card>
+                    (deleteEvent)="handleDelete($event)"
+                    (editEvent)="handleEdit($event, 'ToDo')"
+                    (editCompleted)="stopEditing($event)"></ui-card>
                 </ng-container>
             </div>
         </div>
@@ -39,7 +41,9 @@
                     cdkDrag 
                     (clickEventBack)="handleEventClick($event, 'ToDo')"
                     (clickEventNext)="handleEventClick($event, 'Done')"
-                    (deleteEvent)="handleDelete($event)"></ui-card>
+                    (deleteEvent)="handleDelete($event)"
+                    (editEvent)="handleEdit($event, 'Doing')"
+                    (editCompleted)="stopEditing($event)"></ui-card>
                 </ng-container>
             </div>
         </div>
@@ -58,7 +62,8 @@
                     [controlNext]="false" 
                     cdkDrag 
                     (clickEventBack)="handleEventClick($event, 'Doing')"
-                    (deleteEvent)="handleDelete($event)"></ui-card>
+                    (editEvent)="handleEdit($event, 'Done')"
+                    (editCompleted)="stopEditing($event)"></ui-card>
                 </ng-container>
             </div>
         </div>
