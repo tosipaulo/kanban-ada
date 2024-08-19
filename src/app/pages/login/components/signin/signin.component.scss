@@ -1,0 +1,28 @@
+.signin {
+    width: 400px;
+    padding: 32px;
+    background-color: var(--color-gray-200);
+    border-radius: 5px;
+    text-align: center;
+
+    &__logo {
+        margin-bottom: 32px;
+    }
+
+    &__title {
+        display: block;
+        font-size: 1.2rem;
+        color: var(--color-white);
+        font-weight: 300;
+        margin-bottom: 32px;
+    }
+
+    &__form-field {
+        margin-top: 16px;
+    }
+
+    &__form-actions {
+        margin-top: 32px;
+        text-align: right;
+    }
+}

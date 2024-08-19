@@ -5,7 +5,7 @@ import { QuillModule } from 'ngx-quill'
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from "../button/button.component";
 import { CardModel } from '../../models/card.model';
-
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'ui-modal',
@@ -15,7 +15,8 @@ import { CardModel } from '../../models/card.model';
     DialogModule,
     ReactiveFormsModule,
     QuillModule,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent
 ],
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']

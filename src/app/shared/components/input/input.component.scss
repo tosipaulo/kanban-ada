@@ -12,4 +12,10 @@
     &:focus, &:active {
         border-color: var(--color-gray-100);
     }
+
+    &.custom {
+        border: 1px solid #ccc;
+        background-color: var(--color-white);
+        color: var(--color-gray-100);
+    }
 }

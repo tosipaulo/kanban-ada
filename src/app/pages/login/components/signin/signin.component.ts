@@ -11,6 +11,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TokenService } from 'src/app/core/services/token.service';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { InputComponent } from 'src/app/shared/components/input/input.component';
 
 
 @Component({
@@ -21,7 +22,8 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
     ReactiveFormsModule,
     RouterModule,
     RouterLink,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent
   ],
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],

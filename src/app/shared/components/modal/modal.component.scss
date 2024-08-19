@@ -15,18 +15,8 @@
 
     &__form {
         &__input {
-            width: 100%;
-            outline: none;
-            padding: 0.625rem 1.25rem;
-            font-size: 1rem;
-            color: var(--color-gray-100);
-            line-height: 2;
-            border: 1px solid #ccc;
+            display: block;
             margin-bottom: 32px;
-
-            &:focus, &:active {
-                border-color: var(--color-gray-100);
-            }
         }
 
         &__editor {

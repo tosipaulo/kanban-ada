@@ -9,7 +9,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
-import { CardModel, CardsGroupedByStatus } from 'src/app/shared/models/card.model';
+import { CardModel, CardsGroupedByStatus, CardStatus } from 'src/app/shared/models/card.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -62,8 +62,8 @@ export class BoardComponent implements OnInit {
     this.cardService.updateCard(newCard).subscribe((cardReponse: CardModel) => {})
   }
 
-  handleEventClick(card: CardModel, status: 'ToDo' | 'Doing' | 'Done') {
-    const listName = card.lista as 'ToDo' | 'Doing' | 'Done';
+  handleEventClick(card: CardModel, status: CardStatus) {
+    const listName = card.lista as CardStatus;
     if(this.isValidList(listName)) {
       const index = this.cardsGroup[listName].indexOf(card);
       const newCard = {...card}
@@ -85,7 +85,7 @@ export class BoardComponent implements OnInit {
     return ['ToDo', 'Doing', 'Done'].includes(lista);
   }
 
-  getListName(containerId: string): 'ToDo' | 'Doing' | 'Done' {
+  getListName(containerId: string): CardStatus {
     if (containerId.includes('todoList')) return 'ToDo';
     if (containerId.includes('doingList')) return 'Doing';
     if (containerId.includes('doneList')) return 'Done';
@@ -108,7 +108,7 @@ export class BoardComponent implements OnInit {
     this.cardService.deleteCard(cardId).subscribe(cardsGroup => this.cardsGroup = cardsGroup)
   }
 
-  handleEdit(card: CardModel, status: 'ToDo' | 'Doing' | 'Done') {
+  handleEdit(card: CardModel, status: CardStatus) {
     this.cardService.updateCard(card).subscribe((cardResponse: CardModel) => {
       const cardId = cardResponse.id || '';
       this.editingCardId = cardId;

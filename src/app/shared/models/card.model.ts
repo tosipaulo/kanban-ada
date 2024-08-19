@@ -2,7 +2,7 @@ export interface CardModel {
     id?: string;
     titulo: string;
     conteudo: string;
-    lista?: 'ToDo' | 'Doing' | 'Done';
+    lista?: CardStatus;
 }
 
 export interface CardGroup {
@@ -16,3 +16,5 @@ export interface CardsGroupedByStatus {
     Doing: CardModel[];
     Done: CardModel[]
 }
+
+export type CardStatus = 'ToDo' | 'Doing' | 'Done';

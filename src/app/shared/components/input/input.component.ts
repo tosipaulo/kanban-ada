@@ -9,8 +9,9 @@ import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
   styleUrls: ['./input.component.scss'],
   template: `
     <input 
-    type="text"
+    [type]="type"
     class="input"
+    [class.custom]="styleType == 'white'"
     [placeholder]="placeholder"
     [(ngModel)]="inputValue" 
     (focus)="onTouched && onTouched()"
@@ -19,7 +20,9 @@ import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 })
 export class InputComponent implements ControlValueAccessor {
 
+  @Input() type?: string = 'text';
   @Input() placeholder: string  = '';
+  @Input() styleType?: string = 'default';
 
   inputValue: string = '';
 

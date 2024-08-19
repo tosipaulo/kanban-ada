@@ -1,17 +1,17 @@
-<div class="box">
-    <h3 class="box-title">Seja bem vindo ao Kanban ADA</h3>
-    <span class="box-description">Faça seu login para acessar o sistema</span>
-    <form class="box-form" [formGroup]="form" (ngSubmit)="submit()">
-        <div class="box-form-field">
-            <input type="text" placeholder="Login" formControlName="login">
+<div class="signin">
+    <img class="signin__logo" src="https://ada-site-frontend.s3.sa-east-1.amazonaws.com/home/header-logo.svg" alt="">
+    <span class="signin__title">Faça seu login para acessar o Kanban</span>
+    <form class="signin__form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="signin__form-field">
+            <ui-input placeholder="Digite o login" formControlName="login"/>
         </div>
-        <div class="box-form-field">
-            <input type="password" placeholder="Senha" formControlName="senha">
+        <div class="signin__form-field">
+            <ui-input type="password" placeholder="Digite a senha" formControlName="senha"/>
         </div>
 
-        <div class="form-actions">
+        <div class="signin__form-actions">
             <ui-button [isDisabled]="form.invalid"
-                typeButton="submit" [isLoading]="isLoading">Entrar no board</ui-button>
+                typeButton="submit" [isLoading]="isLoading">Acessar</ui-button>
         </div>
     </form>
 </div>
