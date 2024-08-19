@@ -16,4 +16,12 @@
         opacity: 0.4;
         cursor: not-allowed;
     }
+
+    &.cancel {
+        background-color: #f78484;
+
+        &:hover {
+            background-color: #f5a2a2;
+        }
+    }
 }

@@ -62,16 +62,16 @@ export class BoardComponent implements OnInit {
     this.cardService.updateCard(newCard).subscribe((cardReponse: CardModel) => {})
   }
 
-  handleEventClick(card: CardModel, status: CardStatus) {
-    const listName = card.lista as CardStatus;
-    if(this.isValidList(listName)) {
-      const index = this.cardsGroup[listName].indexOf(card);
+  handleEventClick(card: CardModel, status: CardStatus, statusCurrent: CardStatus) {
+    console.log('back event')
+    if(this.isValidList(statusCurrent)) {
+      const index = this.cardsGroup[statusCurrent].indexOf(card);
       const newCard = {...card}
       newCard.lista = status;
 
       this.cardService.updateCard(newCard).subscribe((cardReponse: CardModel) => {
         if (index !== -1) {
-          this.cardsGroup[listName].splice(index, 1);
+          this.cardsGroup[statusCurrent].splice(index, 1);
           if(this.isValidList(status)) {
             this.cardsGroup[status].push(cardReponse);
             card.lista = status;

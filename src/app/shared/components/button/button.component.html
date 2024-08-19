@@ -2,6 +2,7 @@
   (click)="clicked.emit()"
   [type]="typeButton"
   class="button"
+  [class.cancel]="styleType == 'cancel'"
   [disabled]="isDisabled"
 >
 <ng-content></ng-content>

@@ -16,6 +16,7 @@ export class ButtonComponent implements OnInit {
   @Input() typeButton: 'submit' | 'reset' | 'button' = 'button';
   @Input() isDisabled = false;
   @Input() isLoading = false;
+  @Input() styleType?: string = '';
   @Output() clicked = new EventEmitter<void>();
 
   constructor() { }

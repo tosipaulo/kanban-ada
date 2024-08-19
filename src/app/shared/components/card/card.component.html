@@ -41,14 +41,16 @@
                     (click)="handleClickNext()"></mat-icon>
             </ng-container>
             <ng-template #templateModeEditAction>
-                <mat-icon 
+                <ui-button (click)="isModeView = true" styleType="cancel">Cancelar</ui-button>
+                <ui-button (click)="save()">Salvar</ui-button>
+                <!-- <mat-icon 
                     class="card__icon  card__icon--cancel" 
                     fontIcon="cancel"
                     (click)="isModeView = true"></mat-icon>
                 <mat-icon 
                     class="card__icon" 
                     fontIcon="save"
-                    (click)="save()"></mat-icon>
+                    (click)="save()"></mat-icon> -->
             </ng-template>
         </div>
     </div>

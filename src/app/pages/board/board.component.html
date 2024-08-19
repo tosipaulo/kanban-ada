@@ -19,7 +19,7 @@
                     [card]="card"
                     [controlBack]="false"  
                     cdkDrag 
-                    (clickEventNext)="handleEventClick($event, 'Doing')"
+                    (clickEventNext)="handleEventClick($event, 'Doing', 'ToDo')"
                     (deleteEvent)="handleDelete($event)"
                     (editEvent)="handleEdit($event, 'ToDo')"
                     (editCompleted)="stopEditing($event)"
@@ -41,8 +41,8 @@
                     <ui-card 
                     [card]="card" 
                     cdkDrag 
-                    (clickEventBack)="handleEventClick($event, 'ToDo')"
-                    (clickEventNext)="handleEventClick($event, 'Done')"
+                    (clickEventBack)="handleEventClick($event, 'ToDo', 'Doing')"
+                    (clickEventNext)="handleEventClick($event, 'Done', 'Doing')"
                     (deleteEvent)="handleDelete($event)"
                     (editEvent)="handleEdit($event, 'Doing')"
                     (editCompleted)="stopEditing($event)"
@@ -65,7 +65,7 @@
                     [card]="card" 
                     [controlNext]="false" 
                     cdkDrag 
-                    (clickEventBack)="handleEventClick($event, 'Doing')"
+                    (clickEventBack)="handleEventClick($event, 'Doing', 'Done')"
                     (editEvent)="handleEdit($event, 'Done')"
                     (editCompleted)="stopEditing($event)"
                     (eventModeView)="isModeView = $event"

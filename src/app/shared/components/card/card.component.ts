@@ -7,6 +7,7 @@ import { CardModel } from '../../models/card.model';
 import { InputComponent } from '../input/input.component';
 import { FormBuilder, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QuillModule } from 'ngx-quill'
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'ui-card',
@@ -17,7 +18,8 @@ import { QuillModule } from 'ngx-quill'
     MatIconModule, 
     DragDropModule, 
     InputComponent,
-    QuillModule
+    QuillModule,
+    ButtonComponent
   ],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
@@ -63,6 +65,7 @@ export class CardComponent implements OnInit {
   }
 
   handleClickBack() {
+    console.log('back')
     this.clickEventBack.emit(this.card);
   }
 
