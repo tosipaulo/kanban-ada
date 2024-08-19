@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DIALOG_DATA, DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { QuillModule } from 'ngx-quill'
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from "../button/button.component";
 import { CardModel } from '../../models/card.model';
 import { InputComponent } from '../input/input.component';
-
+import { quillConfig } from '../../utils/quill-config';
 @Component({
   selector: 'ui-modal',
   standalone: true,
@@ -26,15 +26,7 @@ export class ModalComponent implements OnInit {
   @Output() eventModal = new EventEmitter<CardModel>();
 
   form!: FormGroup;
-  quillConfig = {
-    toolbar: [
-      ['bold', 'italic', 'underline'],
-      ['blockquote'],
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      ['link'],
-      ['clean'],                                      
-    ]
-  };
+  quillConfig = quillConfig;
 
   constructor(
     public dialogRef: DialogRef<CardModel>,

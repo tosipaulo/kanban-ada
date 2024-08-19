@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { CdkDrag, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DomSanitizer } from '@angular/platform-browser'
 import { CardModel } from '../../models/card.model';
 import { InputComponent } from '../input/input.component';
-import { FormBuilder, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QuillModule } from 'ngx-quill'
 import { ButtonComponent } from '../button/button.component';
+import { quillConfig } from '../../utils/quill-config';
 
 @Component({
   selector: 'ui-card',
@@ -37,15 +38,7 @@ export class CardComponent implements OnInit {
   @Output() eventModeView = new EventEmitter<boolean>();
 
   form!: FormGroup;
-  quillConfig = {
-    toolbar: [
-      ['bold', 'italic', 'underline'],
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      [{ 'color': [] }, { 'background': [] }],
-      ['link']                                   
-    ],
-    readOnly: false,
-  };
+  quillConfig = quillConfig;
   editingCardId: string | null = null;
 
   constructor(
@@ -65,7 +58,6 @@ export class CardComponent implements OnInit {
   }
 
   handleClickBack() {
-    console.log('back')
     this.clickEventBack.emit(this.card);
   }
 
@@ -88,6 +80,11 @@ export class CardComponent implements OnInit {
       titulo: this.card.titulo,
       conteudo: this.card.conteudo
     });
+  }
+
+  cancelEdit() {
+    this.eventModeView.emit(true);
+    this.isModeView = true;
   }
 
   byPassHTML(html: string) {

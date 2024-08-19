@@ -7,10 +7,9 @@ import { CardComponent } from 'src/app/shared/components/card/card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
-import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { CardModel, CardsGroupedByStatus, CardStatus } from 'src/app/shared/models/card.model';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-board',
@@ -43,7 +42,6 @@ export class BoardComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<CardModel[]>) {
-    console.log(event)
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -63,7 +61,6 @@ export class BoardComponent implements OnInit {
   }
 
   handleEventClick(card: CardModel, status: CardStatus, statusCurrent: CardStatus) {
-    console.log('back event')
     if(this.isValidList(statusCurrent)) {
       const index = this.cardsGroup[statusCurrent].indexOf(card);
       const newCard = {...card}
